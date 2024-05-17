@@ -2,7 +2,7 @@ import {useMemo} from "react";
 
 const Header = (cartState) => {
 
-    const {removeFromCart, cart} = cartState
+    const {removeFromCart, cart, increaseQuantity, decrementQuantity, clearCart} = cartState
 
     const isEmpty = useMemo(() => cart.length === 0, [cart]);
     const total = useMemo(() => cart.reduce((acc, guitar) => acc + (guitar.price * guitar.quantity), 0), [cart])
@@ -56,6 +56,7 @@ const Header = (cartState) => {
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
+                                                                onClick={() => decrementQuantity(guitar.id)}
                                                             >
                                                                 -
                                                             </button>
@@ -63,6 +64,7 @@ const Header = (cartState) => {
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
+                                                                onClick={() => increaseQuantity(guitar.id)}
                                                             >
                                                                 +
                                                             </button>
@@ -86,7 +88,9 @@ const Header = (cartState) => {
                                         </>
                                     )}
 
-                                    <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                                    <button className="btn btn-dark w-100 mt-3 p-2"
+                                            onClick={clearCart}>Vaciar Carrito
+                                    </button>
                                 </div>
                             </div>
                         </nav>
