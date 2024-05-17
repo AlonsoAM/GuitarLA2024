@@ -1,10 +1,9 @@
+import {useMemo} from "react";
+
 const Header = ({cart}) => {
 
-    // state derivado
-    const isEmpty = () => cart.length === 0
-
-    // Calcular el total a pagar
-    const total = cart.reduce((acc, guitar) => acc + (guitar.price * guitar.quantity), 0);
+    const isEmpty = useMemo(() => cart.length === 0, [cart]);
+    const total = useMemo(() => cart.reduce((acc, guitar) => acc + (guitar.price * guitar.quantity), 0), [cart])
 
     return (
         <>
@@ -24,7 +23,7 @@ const Header = ({cart}) => {
 
                                 <div id="carrito" className="bg-white p-3">
 
-                                    {isEmpty() ? (
+                                    {isEmpty ? (
                                         <p className="text-center">El carrito esta vacio</p>
                                     ) : (
                                         <>
@@ -77,7 +76,8 @@ const Header = ({cart}) => {
                                                 ))}
                                                 </tbody>
                                             </table>
-                                            <p className="text-end">Total pagar: <span className="fw-bold">${total}</span>
+                                            <p className="text-end">Total pagar: <span
+                                                className="fw-bold">${total}</span>
                                             </p>
                                         </>
                                     )}
