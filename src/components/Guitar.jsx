@@ -1,5 +1,5 @@
-export const Guitar = ({guitar, addToCart}) => {
-    const {id, name, description, price, image} = guitar
+export const Guitar = (guitarData) => {
+    const {name, description, price, image} = guitarData.guitar
 
     return (
         <>
@@ -14,7 +14,7 @@ export const Guitar = ({guitar, addToCart}) => {
                     <button
                         type="button"
                         className="btn btn-dark w-100"
-                        onClick={() => addToCart(guitar)}
+                        onClick={() => guitarData.addToCart(guitarData.guitar)}
                     >Agregar al Carrito
                     </button>
                 </div>
