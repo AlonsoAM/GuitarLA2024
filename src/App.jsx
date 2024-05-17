@@ -10,8 +10,14 @@ const App = () => {
     const [cart, setCart] = useState([])
 
     const addToCart = (item) => {
-        setCart(prev => [...prev, item])
+        const itemExist = cart.findIndex((guitar) => guitar.id === item.id)
 
+        if (itemExist >= 0) {
+            console.log("Ya existe")
+        } else {
+            item.quantity = 1
+            setCart([...cart, item])
+        }
     }
 
     return (
