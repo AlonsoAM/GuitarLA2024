@@ -11,7 +11,7 @@ const App = () => {
         return localCartState ? JSON.parse(localCartState) : [];
     }
 
-    const [data, setData] = useState(db)
+    const [data] = useState(db)
     const [cart, setCart] = useState(initialCartState)
     const MAX_ITEMS = 5
     const MIN_ITEMS = 1
