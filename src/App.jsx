@@ -22,9 +22,14 @@ const App = () => {
         }
     }
 
+    const removeFromCart = (id) => {
+        const updatedCart = cart.filter((guitar) => guitar.id !== id);
+        setCart(updatedCart);
+    }
+
     return (
         <>
-            <Header cart={cart} />
+            <Header cart={cart} removeFromCart={removeFromCart}/>
             <main className="container-xl mt-5">
                 <h2 className="text-center">Nuestra Colección</h2>
 

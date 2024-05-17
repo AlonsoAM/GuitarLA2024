@@ -2,8 +2,11 @@ import {useMemo} from "react";
 
 const Header = (cartState) => {
 
-    const isEmpty = useMemo(() => cartState.cart.length === 0, [cartState.cart]);
-    const total = useMemo(() => cartState.cart.reduce((acc, guitar) => acc + (guitar.price * guitar.quantity), 0), [cartState.cart])
+    const {removeFromCart, cart} = cartState
+
+    const isEmpty = useMemo(() => cart.length === 0, [cart]);
+    const total = useMemo(() => cart.reduce((acc, guitar) => acc + (guitar.price * guitar.quantity), 0), [cart])
+
 
     return (
         <>
@@ -38,7 +41,7 @@ const Header = (cartState) => {
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                {cartState.cart.map(guitar => (
+                                                {cart.map(guitar => (
                                                     <tr key={guitar.id}>
                                                         <td>
                                                             <img className="img-fluid"
@@ -68,6 +71,7 @@ const Header = (cartState) => {
                                                             <button
                                                                 className="btn btn-danger"
                                                                 type="button"
+                                                                onClick={() => removeFromCart(guitar.id)}
                                                             >
                                                                 X
                                                             </button>
