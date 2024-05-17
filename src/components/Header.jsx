@@ -1,4 +1,8 @@
 const Header = ({cart}) => {
+
+    // state derivado
+    const isEmpty = () => cart.length === 0
+
     return (
         <>
         <header className="py-5 header">
@@ -17,7 +21,7 @@ const Header = ({cart}) => {
 
                             <div id="carrito" className="bg-white p-3">
 
-                                {cart.length === 0 ?(
+                                {isEmpty() ?(
                                     <p className="text-center">El carrito esta vacio</p>
                                 ) : (
                                     <table className="w-100 table">
