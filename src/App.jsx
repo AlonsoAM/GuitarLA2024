@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {db} from "./data/db.js";
 import Header from "./components/Header.jsx";
 import {Guitar} from "./components/Guitar.jsx";
@@ -6,10 +6,19 @@ import {Guitar} from "./components/Guitar.jsx";
 
 const App = () => {
 
+    const initialCartState = () => {
+        const localCartState = localStorage.getItem("cart");
+        return localCartState ? JSON.parse(localCartState) : [];
+    }
+
     const [data, setData] = useState(db)
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(initialCartState)
     const MAX_ITEMS = 5
     const MIN_ITEMS = 1
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     const addToCart = (item) => {
         const itemExist = cart.findIndex((guitar) => guitar.id === item.id)
